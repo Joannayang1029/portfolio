@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>楊喬纓 | 個人簡介</title>
+<meta name="description" content="楊喬纓的個人簡介網站，展示學經歷、技能與作品集">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#B0A6DF',
+            light: '#D7CEEF', 
+            dark: '#4A4172',  
+            50: '#F1EDF9',
+            100: '#D7CEEF',
+            900: '#4A4172'
+          },
+          accent: {  // << 新增一個「跳色」小色盤
+            DEFAULT: '#A8E6CF',  // 薄荷綠
+            light: '#DFF9F2',
+            dark: '#7AC6AE'
+            }  
+        },
+        fontFamily: {
+          sans: ['Noto Sans TC', 'Inter', 'sans-serif'],
+          display: ['Poppins', 'Noto Sans TC', 'sans-serif'],
+        },
+      },
+    },
+  }
+</script>
+
+<style>
+  /* 基本字體設定 */
+  body {
+    font-family: 'Noto Sans TC', 'Inter', sans-serif;
+    overflow-x: hidden; /* 防止水平滾動 */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  }
+  
+  /* 自定義滾動條 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .dark ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 9999px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B0A6DF;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #F1EDF9;
+  }
+  
+  /* 漸變背景動畫 */
+  .gradient-animation {
+    background: linear-gradient(-45deg,#D7CEEF, #B0A6DF, #8C7CC2, #4A4172);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* 動畫效果 */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes slideInRight {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-down {
+    opacity: 0;
+    animation: slideDown 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    opacity: 0;
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+  
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+  
+  .delay-600 {
+    animation-delay: 0.6s;
+  }
+  
+  /* 技能進度條動畫 */
+  .skill-progress {
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.1, 0.5, 0.2, 1);
+  }
+  
+  /* 進度條加載動畫 */
+  @keyframes progressPulse {
+    0% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.6;
+    }
+  }
+  
+  .progress-pulse {
+    animation: progressPulse 2s ease-in-out infinite;
+  }
+  
+  /* Banner 動態圖形效果 */
+  .motion-banner {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .motion-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+    z-index: 1;
+  }
+  
+  /* 浮動圓形 */
+  .floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 0;
+    animation: float 20s linear infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-30px) translateX(30px) rotate(90deg);
+    }
+    50% {
+      transform: translateY(0) translateX(60px) rotate(180deg);
+    }
+    75% {
+      transform: translateY(30px) translateX(30px) rotate(270deg);
+    }
+    100% {
+      transform: translateY(0) translateX(0) rotate(360deg);
+    }
+  }
+  
+  /* 文字光感效果 */
+  @keyframes textGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(74, 65, 114, 0.5);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(74, 65, 114, 0.8), 0 0 25px rgba(74, 65, 114, 0.6)
+    }
+  }
+  
+  .text-glow {
+    animation: textGlow 3s ease-in-out infinite;
+  }
+
+/* 打字機效果 - 第一行 */
+.typewriter-1 {
+  overflow: hidden;
+  border-right: 3px solid white;
+  white-space: nowrap;
+  margin: 0;
+  width: 0;
+  animation: typing1 2s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 1s;
+}
+
+@keyframes typing1 {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* 打字機效果 - 第二行 */
+.typewriter-2 {
+  overflow: hidden;
+  border-right: 3px solid white;
+  white-space: nowrap;
+  margin: 0;
+  width: 0;
+  opacity: 0;
+  animation: typing2 2s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes typing2 {
+  from { width: 0; opacity: 0 }
+  to { width: 100%; opacity: 1 }
+}
+
+/* 去除游標的閃爍效果 - 在打字完成後停止 */
+@keyframes blink-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: transparent; }
+}
+
+/* 在打字結束後隱藏游標 */
+.typewriter-1:after,
+.typewriter-2:after {
+  content: "";
+  visibility: hidden;
+}
+  
+  /* 視差效果 */
+  .parallax-element {
+    transition: transform 0.2s ease-out;
+  }
+  
+  /* 動態線條 */
+  .animated-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: moveLine 8s linear infinite;
+  }
+  
+  @keyframes moveLine {
+    0% {
+      left: -100%;
+      width: 100%;
+    }
+    100% {
+      left: 100%;
+      width: 100%;
+    }
+  }
+  
+  /* 粒子效果 */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: particleFloat 15s linear infinite;
+  }
+  
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(100px);
+      opacity: 0;
+    }
+  }
+  
+  /* 照片邊框動畫 */
+  @keyframes rotateBorder {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .rotating-border {
+    animation: rotateBorder 20s linear infinite;
+  }
+  
+  /* 脈動效果 */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  .pulse-effect {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  /* 修復行動裝置上的間距問題 */
+  @media (max-width: 375px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;  /* 保證容器寬度不會超過視口 */
+        box-sizing: border-box;
+        margin-bottom: 1rem;  /* 加一點底部間距 */
+    }
+    
+    section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        width: 100%;  /* 讓 section 占據整個寬度 */
+        box-sizing: border-box;  /* 保證 padding 不影響寬度計算 */
+        margin-bottom: 2rem;  /* 加上 margin-bottom 來隔開 main */
+    }
+    
+    .motion-banner {
+      min-height: 100vh;
+      width: 100%;  /* 確保 Banner 占滿整個視口寬度 */
+    }
+
+    main {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+  }
+</style>
+</head>
+
+<body class="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- 導航欄 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-brand dark:text-brand-100 font-display tracking-tight">Portfolio.</a>
+        
+        <!-- 桌面導航 -->
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="about-me.html" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">About me</a>
+          <a href="#education" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">Graphic design</a>
+          <a href="UI-UX.html" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">UI/UX</a>
+          <a href="#skills" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">Animation</a>
+          <button id="theme-toggle" class="ml-4 w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-brand hover:text-brand dark:hover:border-brand-100 dark:hover:text-brand-100 transition-colors duration-300">
+            <i class="fa-solid fa-sun dark:hidden"></i>
+            <i class="fa-solid fa-moon hidden dark:block"></i>
+          </button>
+        </nav>
+        
+        <!-- 行動版選單按鈕 -->
+        <div class="md:hidden flex items-center">
+          <button id="theme-toggle-mobile" class="w-10 h-10 rounded-full flex items-center justify-center border-2 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:border-brand hover:text-brand dark:hover:border-brand-100 dark:hover:text-brand-100 transition-colors duration-300 mr-2">
+            <i class="fa-solid fa-sun dark:hidden"></i>
+            <i class="fa-solid fa-moon hidden dark:block"></i>
+          </button>
+          <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- 行動版選單 -->
+      <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 py-4">
+          <nav class="flex flex-col space-y-4">
+            <a href="about-me.html" class="nav-link active relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-brand dark:after:bg-brand-100 after:transition-all">About me</a>
+            <a href="#education" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">Graphic design</a>
+            <a href="UI-UX.html" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">UI/UX</a>
+            <a href="#skills" class="nav-link relative px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-brand dark:hover:text-brand-100 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-brand dark:after:bg-brand-100 after:transition-all hover:after:w-full">Animation</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    
+    <!-- Banner 區域 - 優化後的版本 -->
+    <section class="pt-12 pb-12 mb-0 mt-8 gradient-animation text-white motion-banner">
+      <!-- 動態線條 -->
+      <div class="animated-line top-1/4 w-full"></div>
+      <div class="animated-line top-2/4 w-full" style="animation-delay: 2s;"></div>
+      <div class="animated-line top-3/4 w-full" style="animation-delay: 4s;"></div>
+      
+      <!-- 浮動圓形 -->
+      <div class="floating-circle w-32 h-32 top-20 left-[10%]" style="animation-duration: 25s;"></div>
+      <div class="floating-circle w-48 h-48 bottom-40 right-[15%]" style="animation-duration: 30s; animation-delay: 2s;"></div>
+      <div class="floating-circle w-24 h-24 top-1/3 right-[25%]" style="animation-duration: 20s; animation-delay: 1s;"></div>
+      <div class="floating-circle w-16 h-16 bottom-1/4 left-[20%]" style="animation-duration: 15s; animation-delay: 3s;"></div>
+      
+      <!-- 粒子效果 -->
+      <div id="particles-container"></div>
+      
+      <div class="container mx-auto px-4 min-h-[90vh] md:min-h-screen flex flex-col justify-center relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="order-2 md:order-1 py-12 md:py-0 animate-slide-up" style="animation-delay: 0.3s;">
+            <h1 class="text-xl md:text-xl lg:text-6xl font-black mb-4 leading-tight text-glow" data-depth="0.2">
+              <span class="typewriter-1 inline-block">楊喬纓</span><br>
+              <span class="typewriter-2 inline-block text-xl md:text-3xl opacity-80" data-depth="0.1">只是個設計系學生</span>
+            </h1>
+            <p class="text-xl md:text-xl mb-8 max-w-lg opacity-90" data-depth="0.05">
+              感覺得寫點啥 還沒想到。
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="about-me.html" class="bg-brand hover:bg-brand-light dark:bg-brand-light dark:hover:bg-brand text-white px-6 py-3 rounded-md transition-colors duration-300 inline-flex items-center justify-center pulse-effect">
+                <i class="fa-solid fa-user mr-2"></i>了解更多
+              </a>
+              <a href="#contact" class="border-2 border-white  hover:border-accent hover:bg-accent hover:text-brand-dark px-6 py-[10px] rounded-md transition-colors duration-300 inline-flex items-center justify-center">
+                <i class="fa-solid fa-envelope mr-2"></i>聯絡我
+              </a>
+            </div>
+          </div>
+          <div class="order-1 md:order-2 flex justify-center md:justify-end animate-fade-in" style="animation-delay: 0.6s;">
+            <div class="relative parallax-element" data-depth="0.3">
+              <div class="absolute -top-6 -left-6 w-24 h-24 md:w-32 md:h-32 border-2 border-white/30 rounded-full rotating-border"></div>
+              <div class="w-64 h-64 md:w-80 md:h-80 mt-10 rounded-full overflow-hidden border-4 border-white/80 pulse-effect">
+                <img  class="w-full h-full object-cover">
+              </div>
+              <div class="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 border-2 border-white/30 rounded-full rotating-border" style="animation-direction: reverse;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-100 dark:bg-gray-800 py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="text-2xl font-bold text-brand dark:text-brand-100 font-display tracking-tight">Portfolio.</a>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">© <span id="current-year"></span> 楊喬纓. 保留所有權利。</p>
+          </div>
+          <div class="flex space-x-4">
+            <a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">關於我</a>
+            <a href="#education" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">學歷</a>
+            <a href="#experience" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">經歷</a>
+            <a href="#skills" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">技能</a>
+            <a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand-100 transition-colors">聯絡</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+<script>
+  // 設置當前年份
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+  
+  // 暗/亮模式切換
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+  const html = document.documentElement;
+  
+  // 檢查本地存儲中的主題偏好
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // 設置初始主題
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    html.classList.add('dark');
+  } else {
+    html.classList.remove('dark');
+  }
+  
+  // 主題切換函數
+  function toggleTheme() {
+    html.classList.toggle('dark');
+    
+    // 保存主題偏好到本地存儲
+    if (html.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  }
+  
+  // 主題切換按鈕點擊事件
+  themeToggle.addEventListener('click', toggleTheme);
+  themeToggleMobile.addEventListener('click', toggleTheme);
+  
+  // 行動版選單
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+  
+  // 導航連結點擊後關閉行動版選單
+  const mobileLinks = mobileMenu.querySelectorAll('a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+  
+  // 技能進度條動畫
+  function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    skillBars.forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      bar.style.width = width;
+    });
+  }
+  
+  // 監聽滾動事件，觸發動畫
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.animationPlayState = 'running';
+        
+        // 如果是技能區塊，觸發技能進度條動畫
+        if (entry.target.closest('#skills')) {
+          setTimeout(animateSkillBars, 300);
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  // 監聽所有帶有動畫的元素
+  document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-down, .animate-slide-in-right').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // 創建粒子效果
+  function createParticles() {
+    const container = document.getElementById('particles-container');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // 隨機位置
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      particle.style.left = `${posX}%`;
+      particle.style.top = `${posY}%`;
+      
+      // 隨機大小
+      const size = Math.random() * 4 + 2;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      // 隨機動畫延遲
+      const delay = Math.random() * 10;
+      particle.style.animationDelay = `${delay}s`;
+      
+      // 隨機動畫持續時間
+      const duration = Math.random() * 10 + 10;
+      particle.style.animationDuration = `${duration}s`;
+      
+      container.appendChild(particle);
+    }
+  }
+  
+  // 視差效果
+  function handleParallax(e) {
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    
+    parallaxElements.forEach(element => {
+      const depth = element.getAttribute('data-depth') || 0.1;
+      const moveX = (e.clientX - window.innerWidth / 2) * depth;
+      const moveY = (e.clientY - window.innerHeight / 2) * depth;
+      
+      element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+  }
+  
+  // 初始化視差效果
+  document.addEventListener('mousemove', handleParallax);
+  
+  // 頁面載入時創建粒子和觸發初始動畫
+  window.addEventListener('load', () => {
+    createParticles();
+    
+    // 確保所有動畫元素在頁面載入時可見
+    document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-down, .animate-slide-in-right').forEach(el => {
+      if (isElementInViewport(el)) {
+        el.style.opacity = '1';
+        el.style.animationPlayState = 'running';
+      }
+    });
+    
+    // 初始化技能進度條
+    if (isElementInViewport(document.querySelector('#skills'))) {
+      setTimeout(animateSkillBars, 300);
+    }
+  });
+  
+  // 檢查元素是否在視窗中
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+  
+  // 聯絡表單提交
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // 這裡可以加入表單提交邏輯，例如 AJAX 請求
+      console.log('表單提交:', { name, email, subject, message });
+      
+      // 顯示提交成功訊息
+      alert('感謝您的訊息！我會盡快回覆。');
+      
+      // 重置表單
+      contactForm.reset();
+    });
+  }
+  
+  // 平滑滾動
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }); 
+  
+  // 設置活動導航連結
+  function setActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const headerHeight = document.querySelector('header').offsetHeight;
+      
+      if (window.scrollY >= sectionTop - headerHeight - 100 && window.scrollY < sectionTop + sectionHeight - headerHeight) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', setActiveNavLink);
+  window.addEventListener('load', setActiveNavLink);
+</script>
+
+</body>
